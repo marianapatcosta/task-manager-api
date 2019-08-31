@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true
-});
+})
 
 // virtual field, tasks are not stored in DB, it is only to Mongo knows the relationship
 userSchema.virtual('tasks', {
@@ -72,7 +72,7 @@ userSchema.pre('save', async function (next) {
     }
 
     next();
-});
+})
 
 //Delete user tasks when user is removed
 
@@ -80,7 +80,7 @@ userSchema.pre('remove', async function (next) {
     const user = this;
     await Task.deleteMany({ owner: user._id})
     next();
-});
+})
 
 // declaration function because needs to access this
 // "methods" is used to create instance methods
